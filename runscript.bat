@@ -1,4 +1,8 @@
+cd src
 start rmiregistry
+cd com/company
 Javac *.java
-java Server
-java Client
+cd ..
+cd ..
+java com.company/Server
+java com.company/Client

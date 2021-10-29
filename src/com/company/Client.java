@@ -11,11 +11,10 @@ public class Client {
             Registry registry = LocateRegistry.getRegistry(null);
 
             // Looking up the registry for the remote object
-            Hello stub = (Hello) registry.lookup("Hello");
-
+            ServerInterface stub = (ServerInterface) registry.lookup("Hello");
+            float matrix[][] = { { 1, 2, 3 }, { 3, 4,5 }, { 1, 2, 3 } };
             // Calling the remote method using the obtained object
-            stub.printMsg();
-
+            stub.calcDet(matrix);
             // System.out.println("Remote method invoked");
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());

@@ -1,26 +1,29 @@
 package com.company;
 
-public class Agent implements Runnable {
-    private volatile float result;
-    private float a;
-    private float b;
-    private float c;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
-    public Agent(float a, float b, float c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
-    }
+public class Agent {
 
-    public void run(){
-        setResult(this.a * this.b * this.c);
-    }
+    public Agent() {}
+    public static void main(String args[]) {
+        try {
+            // Instantiating the implementation class
+            AgentImpl obj = new AgentImpl();
 
-    public void setResult(float result) {
-        this.result = result;
-    }
+            // Exporting the object of implementation class
+            // (here we are exporting the remote object to the stub)
+            AgentInterface stub = (AgentInterface) UnicastRemoteObject.exportObject(obj, 0);
 
-    public float getResult() {
-        return result;
+            // Binding the remote object (stub) in the registry
+            Registry registry = LocateRegistry.getRegistry();
+
+            registry.bind("Agent" + args[0], stub);
+            System.err.println("Agent" + args[0] + " ready");
+        } catch (Exception e) {
+            System.err.println("Server exception: " + e.toString());
+            e.printStackTrace();
+        }
     }
 }

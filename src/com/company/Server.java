@@ -9,6 +9,8 @@ public class Server {
     public Server() {}
     public static void main(String args[]) {
         try {
+            System.err.println("Server:");
+
             // Instantiating the implementation class
             ServerImpl obj = new ServerImpl();
 

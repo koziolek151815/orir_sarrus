@@ -8,6 +8,7 @@ public class Client {
 
     private Client() {}
     public static void main(String[] args) {
+        System.err.println("Client:");
         try {
             // Looking up the registry for the remote object
             ServerInterface inter = (ServerInterface) Utility.WaitForRegistry("ServerInterface");

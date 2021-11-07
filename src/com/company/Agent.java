@@ -9,6 +9,7 @@ public class Agent {
     public Agent() {}
     public static void main(String args[]) {
         try {
+            System.err.println("Agent" + args[0] + ":");
             // Instantiating the implementation class
             AgentImpl obj = new AgentImpl();
 
@@ -17,8 +18,7 @@ public class Agent {
             AgentInterface stub = (AgentInterface) UnicastRemoteObject.exportObject(obj, 0);
 
             // Binding the remote object (stub) in the registry
-            Registry registry = LocateRegistry.getRegistry();
-
+            Registry registry = LocateRegistry.getRegistry(null);
             registry.bind("Agent" + args[0], stub);
             System.err.println("Agent" + args[0] + " ready");
         } catch (Exception e) {

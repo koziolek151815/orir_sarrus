@@ -14,7 +14,7 @@ public class Utility {
                 result = registry.lookup(name);
             }
             catch (Exception e) {
-                System.err.println("Could not find remote! Retrying in a second!");
+                System.err.println("Could not find remote \""+name+"\"! Retrying in a second!");
                 Thread.sleep(1000);
             }
         }

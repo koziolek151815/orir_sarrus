@@ -14,10 +14,29 @@ public class Client {
             ServerInterface inter = (ServerInterface) Utility.WaitForRegistry("ServerInterface");
             float matrix[][] = { { 1, 6, 3 }, { 3, 4,5 }, { 1, 2, 3 } };
 
-            // Calling the remote method using the obtained object
-            System.out.println("Starting det calculation");
-            float result = inter.calcDet(matrix);
-            System.out.println("Matrix det : " + result);
+
+            {
+                System.out.println("Starting det calculation");
+
+                long start = System.currentTimeMillis();
+                float result = inter.calcDet(matrix);
+                long finish = System.currentTimeMillis();
+                long timeElapsed = finish - start;
+
+                System.out.println("Matrix det : " + result + " Finished in " + timeElapsed + " ms");
+            }
+            {
+                System.out.println("Starting det calculation");
+
+                long start = System.currentTimeMillis();
+                float result = inter.calcDetSingleAgent(matrix);
+                long finish = System.currentTimeMillis();
+                long timeElapsed = finish - start;
+
+                System.out.println("Matrix det : " + result + " Finished in " + timeElapsed + " ms");
+            }
+
+
         } catch (Exception e) {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();

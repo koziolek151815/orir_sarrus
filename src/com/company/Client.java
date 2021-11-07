@@ -12,28 +12,30 @@ public class Client {
         try {
             // Looking up the registry for the remote object
             ServerInterface inter = (ServerInterface) Utility.WaitForRegistry("ServerInterface");
-            float matrix[][] = { { 1, 6, 3 }, { 3, 4,5 }, { 1, 2, 3 } };
+            float matrix[][] = { { 0, 6, 3 }, { 3, 4,5 }, { 1, 2, 3 } };
 
-
+            long timeElapsed1;
+            long timeElapsed2;
             {
-                System.out.println("Starting det calculation");
+                System.out.println("Starting det calculation for 3 agents");
 
                 long start = System.currentTimeMillis();
                 float result = inter.calcDet(matrix);
                 long finish = System.currentTimeMillis();
-                long timeElapsed = finish - start;
+                timeElapsed1 = finish - start;
 
-                System.out.println("Matrix det : " + result + " Finished in " + timeElapsed + " ms");
+                System.out.println("Matrix det : " + result + " Finished in " + timeElapsed1 + " ms");
             }
             {
-                System.out.println("Starting det calculation");
+                System.out.println("Starting det calculation for 1 agent");
 
                 long start = System.currentTimeMillis();
                 float result = inter.calcDetSingleAgent(matrix);
                 long finish = System.currentTimeMillis();
-                long timeElapsed = finish - start;
+                timeElapsed2 = finish - start;
 
-                System.out.println("Matrix det : " + result + " Finished in " + timeElapsed + " ms");
+                System.out.println("Matrix det : " + result + " Finished in " + timeElapsed2 + " ms");
+                System.out.println("Acceleration : " + (float)timeElapsed2/(float)timeElapsed1);
             }
 
 

@@ -11,4 +11,4 @@ start java com.company/Agent 2
 start java com.company/Agent 3
 start java com.company/Server
 
-start java com.company/Client
+java com.company/Client
